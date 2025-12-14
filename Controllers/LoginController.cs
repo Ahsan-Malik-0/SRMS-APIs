@@ -12,21 +12,21 @@ namespace SRMS_APIs.Controllers
     public class LoginController(DB dbContext) : Controller
     {
 
-        [HttpGet("Login")]
-        public IActionResult Login(LoginDTO login)
+        [HttpGet("{username}/{password}/{role}")]
+        public IActionResult Get(string username, string password, string role)
         {
             try
             {
 
-                if (login.Role == "president" || login.Role == "cp")
+                if (role == "president" || role == "cp")
                 {
                     var user = dbContext.Members
-                        .Select(a => a.Username == login.Username && a.Password == login.Password && a.Position == login.Role);
+                        .Select(a => a.Username == username && a.Password == password && a.Position == role);
 
 
                     if (user == null)
                     {
-                        return BadRequest($"Invalid credentials for {login.Role} role.");
+                        return BadRequest($"Invalid credentials for {role} role.");
                     }
 
                     else
@@ -34,13 +34,13 @@ namespace SRMS_APIs.Controllers
 
                         Members member = new Members
                         {
-                            Username = login.Username,
-                            Password = login.Password,
-                            Position = login.Role,
+                            Username = username,
+                            Password = password,
+                            Position = role,
                             Email = "",
                             Name = "",
                         };
-                        return Ok(new { member });
+                        return Ok(new { user });
                     }
 
 
@@ -49,12 +49,12 @@ namespace SRMS_APIs.Controllers
                 {
 
                     var user = dbContext.Biit_Administration
-                        .Select(a => a.Username == login.Username && a.Password == login.Password && a.Role == login.Role);
+                        .Select(a => a.Username == username && a.Password == password && a.Role == role);
 
 
                     if (user == null)
                     {
-                        return BadRequest($"Invalid credentials for {login.Role} role.");
+                        return BadRequest($"Invalid credentials for {role} role.");
                     }
 
                     else
@@ -62,13 +62,13 @@ namespace SRMS_APIs.Controllers
 
                         BiitAdministration member = new BiitAdministration
                         {
-                            Username = login.Username,
-                            Password = login.Password,
-                            Role = login.Role,
+                            Username = username,
+                            Password = password,
+                            Role = role,
                             Email = "",
                             Name = "",
                         };
-                        return Ok(new { member });
+                        return Ok(new { user });
                     }
                 }
 
