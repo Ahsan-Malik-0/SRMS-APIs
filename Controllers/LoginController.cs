@@ -8,5 +8,18 @@ namespace SRMS_APIs.Controllers
         {
             return View();
         }
+
+        public IActionResult Login()
+        {
+            try
+            {
+                return Ok("Login successful!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Login failed: {ex.Message}");
+            }
+        }
+
     }
 }
