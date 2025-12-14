@@ -15,7 +15,7 @@ namespace SRMS_APIs.Controllers
             try
             {
                 var admin = dBContext.Biit_Administration.ToList();
-                return Ok($"Database connected successfully! Found {admin.Count} societies.");
+                return Ok($"Database connected successfully! Found {admin.Count} admin.");
             }
             catch (Exception ex)
             {
