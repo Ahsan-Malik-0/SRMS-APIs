@@ -15,7 +15,7 @@ namespace SRMS_APIs.Controllers
         [HttpGet("{username}/{password}/{role}")]
         public IActionResult Get(string username, string password, string role)
         {
-            try
+            //try
             {
 
                 if (role == "president" || role == "cp")
