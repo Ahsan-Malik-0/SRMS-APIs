@@ -20,5 +20,14 @@ namespace SRMS_APIs.Models
         [Required]
         [Range(1, int.MaxValue)]
         public int Quantity { get; set; }
+
+
+        [Required]
+        public int Society_Events_Id { get; set; }
+
+        public Societies? Societies { get; set; }   
+
+
+
     }
 }
