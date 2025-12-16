@@ -6,4 +6,10 @@
         public required string Password { get; set; }
         public required string Role { get; set; }
     }
+    
+    public class LogedinDTO
+    {
+        public int Id { get; set; }
+        public required string Role { get; set; }
+    }
 }

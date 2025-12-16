@@ -4,6 +4,10 @@ public class DbAccess
 {
     private readonly string _connectionString;
 
+    public string GetConnString()
+    {
+        return _connectionString;
+    }
     public DbAccess(string connectionString)
     {
         if (string.IsNullOrWhiteSpace(connectionString))
@@ -58,4 +62,7 @@ public class DbAccess
             }
         }
     }
+
+ 
+
 }
